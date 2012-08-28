@@ -61,18 +61,60 @@ JSON File object constructor. Takes a path to a JSON file.
 var file = new json.File('/path/to/file.json');
 ```
 
-#### 
+#### File::read ( Function callback )
 
+Reads the JSON file and parses the contents.
 
+```javascript
+file.read(function() {
+	//
+	// Now you can do things like use the .get() and .set() methods
+	//
+});
+```
+#### File::readSync ( void )
 
+Reads the JSON file and parses the contents synchronously.
 
+#### File::write ( Function callback )
 
+Write the new contents back to the file.
 
+```javascript
+file.write(function() {
+	//
+	// Your JSON file has been updated
+	//
+});
+```
 
+#### File::writeSync ( void )
 
+Write the new contents back to the file synchronously.
 
+#### File::get ( Mixed key )
 
+Get a value from the JSON data.
 
+```javascript
+file.get('foo'); // === file.data['foo']
+file.get('foo.bar.baz'); // === file.data['foo']['bar']['baz']
+```
 
+#### File::set ( Mixed key, Mixed value )
 
+Set a value in the JSON data.
+
+```javascript
+file.set('foo', 'bar');
+file.set('a.b.c', 'baz');
+```
+
+The `set` method returns the file object itself, so this method can be chained.
+
+```javascript
+file.set('a', 'foo')
+    .set('b', 'bar')
+    .set('c', 'baz');
+```
 
