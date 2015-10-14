@@ -1,0 +1,13 @@
+{
+  "foo": "bar",
+  "a": {
+    "b": {
+      "c": "baz"
+    },
+    "b.c": "baz"
+  },
+  "x": "foo for x",
+  "y": "bar for y",
+  "z": "baz for z",
+  "x.y.z": "boom for [x.y.z]"
+}

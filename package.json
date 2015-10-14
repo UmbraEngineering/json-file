@@ -1,20 +1,29 @@
 {
-  "name": "json-file",
-  "version": "0.1.0",
-  "description": "A module for modifiying JSON files",
-  "main": "lib/index.js",
+  "name": "jsonfile2",
+  "version": "2.1.0",
+  "description": "A module for modifying JSON files (extended from npm.org/json-file)",
+  "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "cp test/input.json test/tmp/update.json && node test.js",
+    "lint": "eslint -c .eslintrc *.js"
   },
+  "pre-commit": [
+    "lint",
+    "test"
+  ],
   "repository": {
     "type": "git",
-    "url": "git://github.com/UmbraEngineering/json-file"
+    "url": "git://github.com/alexindigo/jsonfile2"
   },
   "keywords": [
     "json",
     "file",
-    "i/o"
+    "keys"
   ],
-  "author": "James Brumond",
-  "license": "MIT"
+  "author": "Alex Indigo <iam@alexindigo.com>",
+  "license": "MIT",
+  "devDependencies": {
+    "eslint": "^1.6.0",
+    "pre-commit": "^1.1.1"
+  }
 }
