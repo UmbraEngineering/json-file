@@ -1,17 +1,17 @@
-# json-file
+# jsonfile2
 
-A Node.js module for reading/modifying/writing JSON files.
+A Node.js module for reading/modifying/writing JSON files. Based on (json-file)[http://www.npmjs.com/package/json-file].
 
 ## Install
 
 ```bash
-$ npm install json-file
+$ npm install --save jsonfile2
 ```
 
 ## Usage
 
 ```javascript
-var json = require('json-file');
+var json = require('jsonfile2');
 
 // Load a JSON file
 var file = json.read('./package.json');
@@ -99,6 +99,7 @@ Get a value from the JSON data.
 ```javascript
 file.get('foo'); // === file.data['foo']
 file.get('foo.bar.baz'); // === file.data['foo']['bar']['baz']
+file.get('foo[bar.baz]'); // === file.data['foo']['bar.baz']
 ```
 
 #### File::set ( Mixed key, Mixed value )
@@ -108,6 +109,7 @@ Set a value in the JSON data.
 ```javascript
 file.set('foo', 'bar');
 file.set('a.b.c', 'baz');
+file.set('a[b.c]', 'baz');
 ```
 
 The `set` method returns the file object itself, so this method can be chained.
@@ -117,4 +119,3 @@ file.set('a', 'foo')
     .set('b', 'bar')
     .set('c', 'baz');
 ```
-

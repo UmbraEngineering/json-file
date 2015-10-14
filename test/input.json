@@ -1,0 +1,10 @@
+{
+  "foo":
+  {
+    "bar":
+    {
+      "baz": "value of foo.bar.baz"
+    },
+    "bar.baz": "value of foo.['bar.baz']"
+  }
+}
