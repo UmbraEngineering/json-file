@@ -1,6 +1,8 @@
 # jsonfile2
 
-A Node.js module for reading/modifying/writing JSON files. Based on (json-file)[http://www.npmjs.com/package/json-file].
+A Node.js module for reading/modifying/writing JSON files. Based on [json-file](http://www.npmjs.com/package/json-file]).
+
+[![Build Status](https://travis-ci.org/alexindigo/jsonfile2.svg)](https://travis-ci.org/alexindigo/jsonfile2)
 
 ## Install
 

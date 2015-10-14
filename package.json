@@ -1,6 +1,6 @@
 {
   "name": "jsonfile2",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "A module for modifying JSON files (extended from npm.org/json-file)",
   "main": "index.js",
   "scripts": {
