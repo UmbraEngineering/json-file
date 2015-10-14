@@ -1,8 +1,6 @@
-var fs   = require('fs');
+var fs = require('fs');
 var path = require('path');
 var findWhitespace = /^(\s+)/;
-
-
 
 var File = exports.File = function(filePath) {
   this.path = path.normalize(filePath);
@@ -24,6 +22,38 @@ File.prototype.indent = null;
 // ------------------------------------------------------------------
 //  File I/O
 
+/**
+ * Combines read/write method and creates new file
+ * if one doesn't exist
+ *
+ * @param {function} callback - invoked when file's been read into object
+ */
+File.prototype.update = function(callback) {
+  this.read(function(err, json) {
+    // ignore nonexistent file error
+    if (err && err.code != 'ENOENT') {
+      return callback.call(this, err);
+    }
+
+    // invoke callback within file instance
+    // with `write` function as `save` callback
+    callback.call(this, null, this.write.bind(this));
+  }.bind(this));
+};
+
+File.prototype.updateSync = function(callback) {
+  var content;
+
+  try {
+    content = fs.readFileSync(this.path, 'utf8');
+  } catch (e) {
+    if (e.code != 'ENOENT') throw e;
+    content = '{}';
+  }
+
+  this._processJson(content);
+};
+
 File.prototype.read = function(callback) {
   fs.readFile(this.path, 'utf8', this._afterRead.bind(this, callback));
 };
@@ -36,7 +66,7 @@ File.prototype._afterRead = function(callback, err, json) {
   callback();
 };
 
-File.prototype.readSync = function(callback) {
+File.prototype.readSync = function() {
   this._processJson(
     fs.readFileSync(this.path, 'utf8')
   );
@@ -71,6 +101,19 @@ File.prototype.get = function(key) {
 File.prototype.set = function(key, value) {
   this._resolve(key, function(scope, key) {
     scope[key] = value;
+  });
+  return this;
+};
+
+/**
+ * Remove key from the object
+ *
+ * @param   {mixed} key - key to delete
+ * @returns {File} returns itself for chaining
+ */
+File.prototype.del = function(key) {
+  this._resolve(key, function(scope, key) {
+    delete scope[key];
   });
   return this;
 };

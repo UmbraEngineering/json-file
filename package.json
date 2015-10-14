@@ -1,10 +1,10 @@
 {
   "name": "jsonfile2",
-  "version": "2.0.1",
+  "version": "2.1.0",
   "description": "A module for modifying JSON files (extended from npm.org/json-file)",
   "main": "index.js",
   "scripts": {
-    "test": "node test.js",
+    "test": "cp test/input.json test/tmp/update.json && node test.js",
     "lint": "eslint -c .eslintrc *.js"
   },
   "pre-commit": [
